@@ -47,6 +47,8 @@ int main(){
     }
     
 
+    delete[] arr;
+
 
 
 
