@@ -35,10 +35,10 @@ int main() {
 
     if (ans)
     {
-        cout<<"yes";
+        cout<<"yes the element is present in the array\n";
     }
     else{
-        cout<<"no";
+        cout<<"no the element is not present in the array\n";
     }
 
 
