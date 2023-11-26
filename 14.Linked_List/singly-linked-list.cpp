@@ -115,7 +115,7 @@ void deletetionAtPosition(int position, Node *&head, Node *&tail)
     // Node *mid = head;
     Node *temp2 = head;
     int count = 1;
-    while (count < position - 1)
+    while (count <= position - 1)
     {
         temp1 = temp1->next;
         count++;
@@ -187,7 +187,7 @@ int main()
     // deleteHead(head);
     cout << "Printing after deleting head\n";
     // print(head);
-    // cout << "head : " << head->data << endl;
+    //// cout << "head : " << head->data << endl;
     // cout << "tail : " << tail->data << endl;
 
     // deleteTail(tail, head);
@@ -195,7 +195,8 @@ int main()
     // print(head);
     // cout << "head : " << head->data << endl;
     // cout << "tail : " << tail->data << endl;
-
+    
+    cout<<"Printing after deleting at position\n";
     deletetionAtPosition(4, head, tail);
     print(head);
     cout << "head : " << head->data << endl;
