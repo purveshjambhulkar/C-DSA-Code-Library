@@ -74,6 +74,70 @@ void InsertionAtPositon(int position, int data, Node *&head, Node *&tail)
     temp->next = NodeToBeInserted;
 }
 
+// deletion of first element (head)
+void deleteHead(Node *&head)
+{
+    Node *temp = head;
+    temp = temp->next;
+    delete head;
+    head = temp;
+}
+
+// deletion of last element (tail)
+void deleteTail(Node *&tail, Node *&head)
+{
+    Node *temp = head;
+    while (true)
+    {
+        if (temp->next == tail)
+        {
+            break;
+        }
+
+        temp = temp->next;
+    }
+    delete tail ;
+    tail = temp;
+    tail->next = NULL;
+    
+}
+
+void deletetionAtPosition(int position, Node *&head, Node *&tail)
+{
+    // delete at position 1 - head
+    if (position == 1)
+    {
+        deleteHead(head);
+        return;
+    }
+
+    Node *temp1 = head;
+    // Node *mid = head;
+    Node *temp2 = head;
+    int count = 1;
+    while (count < position - 1)
+    {
+        temp1 = temp1->next;
+        count++;
+    }
+
+    // deletion at last position - tail
+    if (temp1->next == NULL)
+    {
+        deleteTail(tail, head);
+        return;
+    }
+
+    // deletion for other position
+    temp2 = temp1;
+    // mid = temp1 ;
+    // mid = mid->next ;
+    temp2 = temp2->next;
+    temp2 = temp2->next;
+
+    temp1->next = temp2;
+}
+
 // defining the function to calculate length of linked list
 int Length_linkedlist(Node *&head)
 {
@@ -115,6 +179,24 @@ int main()
     print(head);
     InsertionAtPositon(4, 99, head, tail);
     cout << "Printing afheter insertion in Position\n";
+    print(head);
+    cout << "head : " << head->data << endl;
+    cout << "tail : " << tail->data << endl;
+
+    // cout << endl;
+    // deleteHead(head);
+    cout << "Printing after deleting head\n";
+    // print(head);
+    // cout << "head : " << head->data << endl;
+    // cout << "tail : " << tail->data << endl;
+
+    // deleteTail(tail, head);
+    // cout << "Printing after deleting tail\n";
+    // print(head);
+    // cout << "head : " << head->data << endl;
+    // cout << "tail : " << tail->data << endl;
+
+    deletetionAtPosition(4, head, tail);
     print(head);
     cout << "head : " << head->data << endl;
     cout << "tail : " << tail->data << endl;
