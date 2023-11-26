@@ -79,6 +79,7 @@ void deleteHead(Node *&head)
 {
     Node *temp = head;
     temp = temp->next;
+    head->next = NULL;
     delete head;
     head = temp;
 }
@@ -96,10 +97,10 @@ void deleteTail(Node *&tail, Node *&head)
 
         temp = temp->next;
     }
-    delete tail ;
+
+    delete tail;
     tail = temp;
     tail->next = NULL;
-    
 }
 
 void deletetionAtPosition(int position, Node *&head, Node *&tail)
@@ -171,12 +172,15 @@ int main()
     Node *head = node1; // starting of the node
     Node *tail = node1; // ending of the node
 
-    // InsertionAtHead(15 , head);
+    InsertionAtHead(15, head);
+    cout << "Printing after insertion in head\n";
+    print(head);
 
     InsertionAtTail(25, tail);
     InsertionAtTail(35, tail);
     cout << "Printing after insertion in Tail\n";
     print(head);
+
     InsertionAtPositon(4, 99, head, tail);
     cout << "Printing afheter insertion in Position\n";
     print(head);
@@ -185,7 +189,7 @@ int main()
 
     // cout << endl;
     // deleteHead(head);
-    cout << "Printing after deleting head\n";
+    //cout << "Printing after deleting head\n";
     // print(head);
     //// cout << "head : " << head->data << endl;
     // cout << "tail : " << tail->data << endl;
@@ -195,9 +199,9 @@ int main()
     // print(head);
     // cout << "head : " << head->data << endl;
     // cout << "tail : " << tail->data << endl;
-    
-    cout<<"Printing after deleting at position\n";
-    deletetionAtPosition(4, head, tail);
+
+    cout << "Printing after deleting at position\n";
+    deletetionAtPosition(5, head, tail);
     print(head);
     cout << "head : " << head->data << endl;
     cout << "tail : " << tail->data << endl;
