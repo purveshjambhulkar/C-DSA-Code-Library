@@ -40,6 +40,13 @@ int getLength(Node *&head)
 
 void InsertionAtHead(Node *&head, int data)
 {
+    // if the list is emplty i.e no nodes
+
+    if (head == NULL)
+    {
+        Node *temp = new Node(data);
+        head = temp;
+    }
 
     Node *temp = new Node(data);
     temp->next = head;
@@ -47,8 +54,13 @@ void InsertionAtHead(Node *&head, int data)
     head = temp;
 }
 
-void InsertionAtTail(Node *&tail, int data)
+void InsertionAtTail(Node *&head, Node *&tail, int data)
 {
+    if (head == NULL)
+    {
+        Node *temp = new Node(data);
+        tail = temp;
+    }
     Node *temp = new Node(data);
     tail->next = temp;
     tail = temp;
@@ -73,7 +85,7 @@ void InsertionAtPosition(Node *&head, Node *&tail, int data, int position)
 
     if (temp1->next == NULL)
     {
-        InsertionAtTail(tail, data);
+        InsertionAtTail(head, tail, data);
         return;
     }
 
@@ -91,6 +103,49 @@ void InsertionAtPosition(Node *&head, Node *&tail, int data, int position)
     temp2->prev = NodeTObeInserted;
 }
 
+void deletionAtHead(Node *&head, Node *&tail)
+{
+
+    // if only one node
+    if (head == tail)
+    {
+        delete head;
+        return;
+    }
+
+    Node *temp = head;
+
+    temp = temp->next;
+    temp->prev = NULL;
+    delete head;
+    head = temp;
+}
+
+void deletionaAtTail(Node* &head , Node* &tail){
+
+     Node* temp = head ;
+
+    if (head == tail)
+    {
+        delete head;
+        return;
+    }
+
+
+
+    while (temp->next == NULL)
+    {
+        temp = temp->next ; 
+    }
+
+    temp->next = NULL ;
+    tail->prev = NULL ; 
+    delete tail ;
+    tail = temp  ;  
+
+    
+}
+
 int main()
 {
 
@@ -106,8 +161,8 @@ int main()
     // cout<<"Head : "<<head->data<<endl;
     // cout<<"Tail : "<<tail->data<<endl;
 
-    InsertionAtTail(tail, 15);
-    InsertionAtTail(tail, 20);
+    InsertionAtTail(head, tail, 15);
+    InsertionAtTail(head, tail, 20);
     cout << "Printing after insertion at Tail\n";
     print(head);
     cout << "Head : " << head->data << endl;
@@ -121,4 +176,18 @@ int main()
     cout << "Tail : " << tail->data << endl;
     cout << endl;
 
+    // deletionAtHead(head, tail);
+    // cout << "Printing after deleting at Head\n";
+    // print(head);
+    // cout << "Head : " << head->data << endl;
+    // cout << "Tail : " << tail->data << endl;
+    // cout << endl;
+
+    deletionaAtTail(head ,tail);
+    print(head);
+    cout << "Head : " << head->data << endl;
+    cout << "Tail : " << tail->data << endl;
+    cout<<endl;
+
 }
+
