@@ -121,29 +121,42 @@ void deletionAtHead(Node *&head, Node *&tail)
     head = temp;
 }
 
-void deletionaAtTail(Node* &head , Node* &tail){
-
-     Node* temp = head ;
-
-    if (head == tail)
+void deletionAtPosition(Node *&head, Node *&tail, int position)
+{
+    //delete node at first position
+    if (position == 1)
     {
-        delete head;
+        deletionAtHead(head ,tail);
         return;
     }
 
+    // deleting the node at ay position or last
 
+    Node *curr = head;
+    Node *prev = NULL;
 
-    while (temp->next == NULL)
+    int count = 1;
+    while (count <= position - 1)
     {
-        temp = temp->next ; 
+        prev = curr;
+        curr = curr->next;
+        count++;
     }
 
-    temp->next = NULL ;
-    tail->prev = NULL ; 
-    delete tail ;
-    tail = temp  ;  
+    prev->next = curr->next;
 
-    
+    // check whether the curr is tail
+    if (curr->next == NULL)
+    {
+        delete tail;
+        tail = prev;
+        return;
+    }
+    else
+    { // if not tail
+        curr->next = NULL;
+        delete curr;
+    }
 }
 
 int main()
@@ -183,11 +196,11 @@ int main()
     // cout << "Tail : " << tail->data << endl;
     // cout << endl;
 
-    deletionaAtTail(head ,tail);
+    int position = 1 ;
+    deletionAtPosition(head , tail , position);
+    cout<<"Printing after deletion at Position : "<<position<<endl;
     print(head);
     cout << "Head : " << head->data << endl;
     cout << "Tail : " << tail->data << endl;
-    cout<<endl;
-
+    cout << endl;
 }
-
