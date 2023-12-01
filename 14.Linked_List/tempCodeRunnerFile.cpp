@@ -1,0 +1,1 @@
+cout<<"Head of the reversed Linked list is : "<<prev->data<<endl;
