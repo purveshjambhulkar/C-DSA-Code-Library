@@ -16,7 +16,8 @@ public:
     }
 };
 
-void sort(Node *head)
+// Approach 1
+void sort1(Node *head)
 {
     int count0 = 0;
     int count1 = 0;
@@ -60,6 +61,68 @@ void sort(Node *head)
     }
 }
 
+// Approach 2
+void addAtTail(Node *&Tail, Node *curr);
+Node *sort2(Node *head)
+{
+
+    Node *zeroHead = new Node(-1);
+    Node *zeroTail = zeroHead;
+    Node *onesHead = new Node(-1);
+    Node *onesTail = onesHead;
+    Node *twosHead = new Node(-1);
+    Node *twosTail = twosHead;
+
+    Node *curr = head;
+
+    while (curr != NULL)
+    {
+        int value = curr->data;
+
+        if (value == 0)
+        {
+            addAtTail(zeroTail, curr);
+        }
+        else if (value == 1)
+        {
+            addAtTail(onesTail, curr);
+        }
+        else if (value == 2)
+        {
+            addAtTail(twosTail, curr);
+        }
+
+        curr = curr->next;
+    }
+
+    // Merging
+    if (onesHead->next != NULL)
+    {
+        zeroTail->next = onesHead->next;
+    }
+    else
+    {
+        zeroTail->next = twosHead->next;
+    }
+
+    onesTail->next = twosHead->next;
+    twosTail->next = NULL;
+
+    head = zeroHead->next;
+
+    // deleting dumy nodes
+    delete zeroHead;
+    delete onesHead;
+    delete twosHead;
+    return head;
+}
+
+void addAtTail(Node *&Tail, Node *curr)
+{
+    Tail->next = curr;
+    Tail = curr;
+}
+
 void InsertionAtTail(int data, Node *&tail)
 {
     Node *temp = new Node(data);
@@ -91,7 +154,8 @@ int main()
     InsertionAtTail(2, tail);
     cout << "Before Sorting\n";
     print(head);
-    sort(head);
+    // sort1(head); //Sorting by first Approach
     cout << "After Sorting\n";
-    print(head);
+    Node *NewNode = sort2(head); // Sorting by second Approach
+    print(NewNode);
 }
