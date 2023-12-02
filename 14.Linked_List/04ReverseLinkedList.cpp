@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+// This is code to reverse a linked list
+
 class Node
 {
 
@@ -23,7 +25,7 @@ void InsertionAtTail(int data, Node *&tail)
 }
 
 // This function reverses the linked list and return the head of the reversed linked list
-Node* ReveseLinkedList(Node *head)
+Node *ReveseLinkedList(Node *head)
 {
     Node *prev = NULL;
     Node *curr = head;
@@ -36,11 +38,32 @@ Node* ReveseLinkedList(Node *head)
         prev = curr;
         curr = forward;
     }
-    cout<<"Head of the reversed Linked list is : "<<prev->data<<endl;
-    return prev ;
+    cout << "Head of the reversed Linked list is : " << prev->data << endl;
+    return prev;
 }
 
-void print(Node *&head)
+// Recursive attempt
+Node *ReveseLinkedList(Node *prev, Node *curr, Node *forward)
+{
+
+    // base case
+    if (curr == NULL)
+    {
+        cout << "Rev Head : " << prev->data << endl;
+        return prev;
+    }
+
+    // Processing
+    forward = curr->next;
+    curr->next = prev;
+    prev = curr;
+    curr = forward;
+
+    // Recursive Call
+    ReveseLinkedList(prev, curr, forward);
+}
+
+void print(Node *head)
 {
     Node *ptr = head;
     while (ptr != NULL)
@@ -63,8 +86,15 @@ int main()
     InsertionAtTail(50, tail);
     print(head);
 
+    cout << "Reversing by Iteration (Loops)\n";
     head = ReveseLinkedList(head);
     print(head);
-    
-    cout<<head->data;
+
+    Node *prev = NULL;
+    Node *curr = head;
+    Node *forward = NULL;
+
+    cout << "Reversing by Recursion\n";
+    Node *NewNode = ReveseLinkedList(prev, curr, forward);
+    print(NewNode);
 }
