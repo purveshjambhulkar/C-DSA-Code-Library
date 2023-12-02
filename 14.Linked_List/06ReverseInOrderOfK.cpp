@@ -32,40 +32,36 @@ public:
 //     return prev;
 // }
 
-Node *ReverseKorder(Node *head, int k, int length)
+Node *RevKorder(Node *&head, int k)
 {
-    Node *link = NULL;
-    Node *first = NULL;
-    Node *NewHead = NULL;
-    Node *curr = head;
-    Node *forward = NULL;
-    Node *prev = NULL;
-
-    for (int i = 0; i < length / k; i++)
+    // base case
+    if (head == NULL)
     {
-        first = curr;
-        for (int j = 0; j < k - 1; j++)
-        {
-
-            forward = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = forward;
-            link = curr->next;
-        }
-        if (i == 0)
-        {
-            NewHead = curr;
-        }
-        first->next = link;
-        link = NULL ;
-        curr = curr->next;
-        forward = NULL;
-        prev = NULL;
-
-        
+        return NULL;
     }
-    return NewHead;
+
+    Node *prev = NULL;
+    Node *curr = head;
+    Node *next = NULL;
+    int count = 0;
+        
+    // processing
+    while (curr != NULL && count < k)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+        count++;
+    }
+
+    // recursive call
+    if (next != NULL)
+    {
+        head->next = RevKorder(next, k);
+    }
+
+    return prev;
 }
 
 int LengthLinkedList(Node *&head)
@@ -116,6 +112,6 @@ int main()
     int orderK = 2;
     int length = LengthLinkedList(head);
 
-    Node *Newhead = ReverseKorder(head, orderK, length);
+    Node *Newhead = RevKorder(head, orderK);
     print(Newhead);
 }
