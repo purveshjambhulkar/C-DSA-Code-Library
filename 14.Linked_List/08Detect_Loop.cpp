@@ -20,7 +20,7 @@ public:
 Node *getStartingLoopNode(Node *head);
 
 // FUNCTION TO DETECT THE LOOP - USING FLOYDS ALGORITHM
-Node * detectLoop(Node *head)
+Node *detectLoop(Node *head)
 {
     if (head == NULL || head->next == NULL)
     {
@@ -48,16 +48,17 @@ Node * detectLoop(Node *head)
     return slow;
 }
 
-void removeLoop(Node *head){
+void removeLoop(Node *head)
+{
 
     Node *startingLoopNode = getStartingLoopNode(head);
-    Node *temp = startingLoopNode ;
+    Node *temp = startingLoopNode;
 
-    while (temp->next == startingLoopNode )
+    while (temp->next == startingLoopNode)
     {
-        temp = temp->next ;
+        temp = temp->next;
     }
-    
+
     temp->next = NULL;
 }
 
@@ -70,7 +71,7 @@ Node *getStartingLoopNode(Node *head)
     }
 
     Node *intersection = detectLoop(head);
-    Node *slow = head;
+    Node *slow = head;      
     while (slow != intersection)
     {
         slow = slow->next;
@@ -113,12 +114,13 @@ int main()
     //  node3->next = node4;
 
     detectLoop(head);
-    
 
     Node *LoopStart = getStartingLoopNode(head);
-    cout<<LoopStart->data<<endl;
+    cout << "Loop starts at : " << LoopStart->data << endl;
     // print(head);
 
+    cout << endl
+         << "Printing after Removing the Loop\n";
     removeLoop(head);
-    print(head); //print the linked list without loop
+    print(head); // print the linked list without loop
 }
