@@ -97,6 +97,8 @@ bool isPalindrome2(Node *head)
         firstHalf = firstHalf->next;
         secondHalf = secondHalf->next;
     }
+
+
     return true;
 }
 /****************************************************/
@@ -129,7 +131,7 @@ int main()
     InsertionAtTail(2, tail);
     InsertionAtTail(2, tail);
     InsertionAtTail(0, tail);
-    InsertionAtTail(4, tail);
+    InsertionAtTail(1, tail);
 
     print(head);
 
