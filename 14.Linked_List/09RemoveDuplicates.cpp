@@ -15,7 +15,7 @@ public:
         this->next = NULL;
     }
 };
-
+/******************************************************************/
 // for sorted linked list
 void removeDuplicatesSorted(Node *head)
 {
@@ -45,7 +45,7 @@ void removeDuplicatesSorted(Node *head)
         }
     }
 }
-
+/***********************************************************88*/
 // for unsorted linked list
 void removeDuplicatesUnsorted(Node *head)
 {
@@ -81,7 +81,7 @@ void removeDuplicatesUnsorted(Node *head)
         }
     }
 }
-
+/*******************************************************88888*/
 void InsertionAtTail(int data, Node *&tail)
 {
     Node *temp = new Node(data);

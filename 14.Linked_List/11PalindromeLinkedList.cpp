@@ -16,8 +16,9 @@ public:
         this->next = NULL;
     }
 };
-
-bool isPalindrome(Node *head)
+/***************************************************************/
+// Approach 1
+bool isPalindrome1(Node *head)
 {
     Node *start = head;
     vector<int> palindrome;
@@ -42,7 +43,63 @@ bool isPalindrome(Node *head)
 
     return true;
 }
+/*********************************************************************/
+// Approach 2
+Node *getMiddle(Node *head)
+{
+    Node *slow = head;
+    Node *fast = head;
 
+    while (fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+
+    return slow;
+}
+
+Node *reverse(Node *head)
+{
+    Node *prev = NULL;
+    Node *curr = head;
+    Node *next = NULL;
+
+    while (curr != NULL)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    return prev;
+}
+bool isPalindrome2(Node *head)
+{
+
+    Node *Middle = getMiddle(head);
+
+    Node *temp = Middle->next;
+
+    Middle->next = reverse(temp);
+
+    Node *firstHalf = head;
+    Node *secondHalf = Middle->next;
+
+    while (secondHalf->next != NULL)
+    {
+        if (firstHalf->data != secondHalf->data)
+        {
+            return false;
+        }
+
+        firstHalf = firstHalf->next;
+        secondHalf = secondHalf->next;
+    }
+    return true;
+}
+/****************************************************/
 void InsertionAtTail(int data, Node *&tail)
 {
     Node *temp = new Node(data);
@@ -72,11 +129,11 @@ int main()
     InsertionAtTail(2, tail);
     InsertionAtTail(2, tail);
     InsertionAtTail(0, tail);
-    InsertionAtTail(1, tail);
+    InsertionAtTail(4, tail);
 
     print(head);
 
-    if (isPalindrome(head))
+    if (isPalindrome2(head))
     {
         cout << "Palindrome\n";
     }

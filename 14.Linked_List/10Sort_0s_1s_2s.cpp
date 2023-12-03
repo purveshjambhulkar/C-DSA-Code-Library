@@ -15,7 +15,7 @@ public:
         this->next = NULL;
     }
 };
-
+/*******************************************************/
 // Approach 1
 void sort1(Node *head)
 {
@@ -60,7 +60,7 @@ void sort1(Node *head)
         curr = curr->next;
     }
 }
-
+/**********************************************************/
 // Approach 2
 void addAtTail(Node *&Tail, Node *curr);
 Node *sort2(Node *head)
@@ -122,7 +122,7 @@ void addAtTail(Node *&Tail, Node *curr)
     Tail->next = curr;
     Tail = curr;
 }
-
+/******************************************************************/
 void InsertionAtTail(int data, Node *&tail)
 {
     Node *temp = new Node(data);
