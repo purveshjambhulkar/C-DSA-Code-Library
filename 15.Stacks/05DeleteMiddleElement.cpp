@@ -2,6 +2,8 @@
 #include <stack>
 using namespace std;
 
+/***************************************************/
+//Approach 1
 void deleteMiddle(stack<int> &inputStack, int N)
 {
 
@@ -45,6 +47,11 @@ void deleteMiddle(stack<int> &inputStack, int N)
         }
     }
 }
+/**********************************************************/
+//Approach 2 
+
+
+/*************************************************************/
 int main()
 {
 
@@ -58,6 +65,6 @@ int main()
     s.push(5);
 
     int N = (s.size()) - 1;
-
+    
     deleteMiddle(s, N);
 }
