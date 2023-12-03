@@ -2,13 +2,14 @@
 
 using namespace std;
 
-//MergeSort Algorithm using recursion
+// MergeSort Algorithm using recursion
 
-//Creating a Global Variable to cal InversionCount
+// Creating a Global Variable to cal InversionCount
 
 int inversionCount = 0;
 
-int mergeArray(int *arr, int start, int end ) {
+int mergeArray(int *arr, int start, int end)
+{
     int mid = start + (end - start) / 2;
 
     int len1 = mid - start + 1;
@@ -16,22 +17,24 @@ int mergeArray(int *arr, int start, int end ) {
 
     int *first = new int[len1];
     int *second = new int[len2];
-    int inversionCount = 0 ;                /*In the context of merge sort, 
-                                             an inversion count is a measure of the disorder or "sortedness" of an array.
-                                             It represents the total number of pairs of elements in the array that
-                                              are out of order, meaning that a smaller element comes before a larger element.
-                                               A lower inversion count indicates a more sorted array, while a higher inversion 
-                                              count indicates a more unsorted array.*/
+    int inversionCount = 0; /*In the context of merge sort,
+                             an inversion count is a measure of the disorder or "sortedness" of an array.
+                             It represents the total number of pairs of elements in the array that
+                              are out of order, meaning that a smaller element comes before a larger element.
+                               A lower inversion count indicates a more sorted array, while a higher inversion
+                              count indicates a more unsorted array.*/
 
     // Copying the first half of arr into *first
     int mainArrayIndex = start;
-    for (int i = 0; i < len1; i++) {
+    for (int i = 0; i < len1; i++)
+    {
         first[i] = arr[mainArrayIndex++];
     }
 
     // Copying the next half of arr into *second
     mainArrayIndex = mid + 1;
-    for (int i = 0; i < len2; i++) {
+    for (int i = 0; i < len2; i++)
+    {
         second[i] = arr[mainArrayIndex++];
     }
 
@@ -40,23 +43,29 @@ int mergeArray(int *arr, int start, int end ) {
     int index1 = 0;
     int index2 = 0;
 
-    //Merging the two halves into the main array
-    while (index1 < len1 && index2 < len2) {
-        if (first[index1] < second[index2]) {
+    // Merging the two halves into the main array
+    while (index1 < len1 && index2 < len2)
+    {
+        if (first[index1] < second[index2])
+        {
             arr[mainArrayIndex++] = first[index1++];
-        } else {
-                //Inversion Detected
-                inversionCount += len1 - index1;
+        }
+        else
+        {
+            // Inversion Detected
+            inversionCount += len1 - index1;
 
             arr[mainArrayIndex++] = second[index2++];
         }
     }
 
-    while (index1 < len1) {
+    while (index1 < len1)
+    {
         arr[mainArrayIndex++] = first[index1++];
     }
 
-    while (index2 < len2) {
+    while (index2 < len2)
+    {
         arr[mainArrayIndex++] = second[index2++];
     }
 
@@ -64,13 +73,13 @@ int mergeArray(int *arr, int start, int end ) {
     delete[] second;
 
     return inversionCount;
-
-    
 }
 
-int mergeSortalgo(int *arr, int start, int end) {
+int mergeSortalgo(int *arr, int start, int end)
+{
     // Base case
-    if (start >= end) {
+    if (start >= end)
+    {
         return 0;
     }
 
@@ -84,32 +93,32 @@ int mergeSortalgo(int *arr, int start, int end) {
 
     int mergeInversion = mergeArray(arr, start, end);
 
-    inversionCount = leftInversion + rightInversion + mergeInversion ; 
+    inversionCount = leftInversion + rightInversion + mergeInversion;
 
-     
-    return inversionCount; 
+    return inversionCount;
 }
 
-int main() {
+int main()
+{
     int arr[7] = {9, 4, 3, 7, 1, 5, 8};
     int size = 7;
-        
 
     mergeSortalgo(arr, 0, size - 1);
 
     cout << "Printing the sorted array:\n";
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         cout << arr[i] << " ";
     }
 
     cout << endl;
 
-    cout<<"Inversion Count : "<<inversionCount<<endl;
+    cout << "Inversion Count : " << inversionCount << endl;
     return 0;
 }
 
-//TIME COMPLEXITIES EXPLANATION
+// TIME COMPLEXITIES EXPLANATION
 /*The time complexity of merge sort is O(n log n), where n is the number of elements in the array. This means that the time it takes to sort an array using merge sort is directly proportional to the logarithm of the number of elements.
 
 To understand why merge sort has a time complexity of O(n log n), let's consider the following steps:
