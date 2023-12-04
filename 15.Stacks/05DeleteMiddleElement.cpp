@@ -3,8 +3,8 @@
 using namespace std;
 
 /***************************************************/
-//Approach 1
-void deleteMiddle(stack<int> &inputStack, int N)
+// Approach 1
+void deleteMiddle1(stack<int> &inputStack, int N)
 {
 
     int size = N + 1;
@@ -48,8 +48,26 @@ void deleteMiddle(stack<int> &inputStack, int N)
     }
 }
 /**********************************************************/
-//Approach 2 
+// Approach 2 - Recursive Call
+void deleteMiddle2(stack<int> &inputStack, int size, int count = 0)
+{
 
+    // base case
+    if (count == size / 2)
+    {
+        inputStack.pop();
+        return;
+    }
+
+    int num = inputStack.top();
+    inputStack.pop();
+
+    // RECURSIVE CALL
+
+    deleteMiddle2(inputStack, size, count + 1);
+
+    inputStack.push(num);
+}
 
 /*************************************************************/
 int main()
@@ -65,6 +83,7 @@ int main()
     s.push(5);
 
     int N = (s.size()) - 1;
-    
-    deleteMiddle(s, N);
+
+    // deleteMiddle1(s, N);
+    deleteMiddle2(s, N);
 }
