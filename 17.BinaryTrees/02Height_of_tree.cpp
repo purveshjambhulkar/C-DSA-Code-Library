@@ -4,7 +4,7 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
-/*
+
 struct Node
 {
     int data;
@@ -16,7 +16,7 @@ struct Node
         left = right = NULL;
     }
 };
-*/
+
 class Solution{
     public:
    
