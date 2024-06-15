@@ -122,6 +122,34 @@ void PostorderTraversal(node *root) // LRN
     cout << root->data << " ";
 }
 
+// Iterative Inorder Traversal
+void iterativeInorderTraversal(node* root) {
+    // Base case
+    if (root == nullptr) {
+        return;
+    }
+
+    stack<node*> s;
+    node* current = root;
+
+    while (current != nullptr || !s.empty()) {
+        // Reach the left most node of the current node
+        while (current != nullptr) {
+            s.push(current);
+            current = current->left;
+        }
+
+        // Current must be NULL at this point
+        current = s.top();
+        s.pop();
+        cout << current->data << " ";
+
+        // We have visited the node and its left subtree.
+        // Now, it's right subtree's turn
+        current = current->right;
+    }
+}
+
 node *buildTreefromLevelOrder(node *root)
 {
 
@@ -168,20 +196,20 @@ void inorderTraversalforLeafCount(node *root, int &count)
         return;
     }
 
-    inorderTraversalforLeafCount(root->left,count);
+    inorderTraversalforLeafCount(root->left, count);
 
     if (root->left == NULL && root->right == NULL)
     {
         count++;
     }
 
-    inorderTraversalforLeafCount(root->right,count);
+    inorderTraversalforLeafCount(root->right, count);
 }
-void countLeafNodes(node *root)
+void countLeafnodes(node *root)
 {
     int count = 0;
     inorderTraversalforLeafCount(root, count);
-    cout << "Leaf Node : " << count << endl;
+    cout << "Leaf node : " << count << endl;
 }
 
 int main()
@@ -204,5 +232,5 @@ int main()
     // cout << endl;
 
     // buildTreefromLevelOrder(root); // 1 35 7 11 17 -1 -1 -1 -1 -1 -1 -1
-    countLeafNodes(root );
+    countLeafnodes(root);
 }

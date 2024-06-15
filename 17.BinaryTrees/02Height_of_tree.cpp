@@ -27,7 +27,7 @@ class Solution{
         if(node == NULL){
             return 0;
         }
-        
+            
         int l = height(node->left);
         int r = height(node->right);
         
