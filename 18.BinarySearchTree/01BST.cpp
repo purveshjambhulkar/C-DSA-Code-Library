@@ -397,7 +397,7 @@ int main()
     // cout << "InorderPrecedence : " << ans1 << endl;
 
     // cout << "Enter the element of which you want to find Inorder Successor : ";
-    // int element2;
+ 
     // cin >> element2;
     // int ans2 = findInorderSuccessor(root, element2);
     // cout << "InorderSuccessor : " << ans2 << endl;
