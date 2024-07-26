@@ -36,38 +36,35 @@
 
 // }
 
-// bool validateBST(BinaryTreeNode<int> *root) {
-//     // Write your code here
-//     vector<int> arr;
-//     inOrderTraversal(root , arr);
 
-//     return is_sorted(arr.begin(), arr.end());
-// }
-
-
-
-//another approach
-
-bool isBST(BinaryTreeNode<int> *root, int min, int max) {
+int solve(BinaryTreeNode<int> *root , int &i , int k){
 
     //base case
-    if (root == NULL) {
-       return  true;
+    if(root == NULL){
+        return -1;
     }
 
-    //recursive call
+    int left = solve(root->left, i, k) ;
 
-    if (root->data >= min && root->data <= max) {
-        bool left = isBST(root->left, min, root->data);
-        bool right = isBST(root->right, root->data, max);
-        return left && right;
-    } else {
-    
-    return false;}
+    if(left != -1){
+        return left;
+    }
+
+    i++;
+    if(i == k ){
+        return root->data;
+    }
+
+    return solve(root->right, i, k);
+
+
+
 }
 
+int kthSmallest(BinaryTreeNode<int> *root, int k) {
+    int i = 0;
+    int ans = solve(root ,i , k );
+    return ans;
 
-bool validateBST(BinaryTreeNode<int> *root) {
-    // Write your code here
-  return isBST(root, INT_MIN, INT_MAX);
+  
 }
