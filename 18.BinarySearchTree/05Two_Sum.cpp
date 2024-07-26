@@ -59,7 +59,7 @@ void inOrderArr(BinaryTreeNode<int> *root, int target, vector<int> &arr) {
 //     return false;
 // }
 
-//approach 2 
+//approach 2 - use of 2 pointer method to compare the values of two nodes
 bool twoSumInBST(BinaryTreeNode<int>* root, int target) {
 	//Write your code here
         if (root == NULL) {
