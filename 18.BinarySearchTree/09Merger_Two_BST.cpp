@@ -36,7 +36,7 @@ void inOrder(TreeNode *root, vector<int> &arr) {
 }
 
 vector<int> mergeBST(TreeNode *root1, TreeNode *root2) {
-  // Write your code here.
+  // Write your code here.                  
   vector<int> arr1;
   vector<int> arr2;
 
