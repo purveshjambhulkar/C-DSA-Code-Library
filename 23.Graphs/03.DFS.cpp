@@ -23,7 +23,7 @@ vector<vector<int>> depthFirstSearch(int V, int E, vector<vector<int>> &edges) {
     int v = edges[i][1];
 
     adj[u].push_back(v);
-    adj[v].push_back(u);
+    adj[v].push_back(u); 
   }
 
   vector<vector<int>> ans;
